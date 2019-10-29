@@ -690,7 +690,10 @@ public class TurbolinksSession implements TurbolinksScrollUpCallback {
      * @param enabled If true pulling to refresh the WebView is enabled
      */
     public void setPullToRefreshEnabled(boolean enabled) {
-        pullToRefreshEnabled = enabled;
+	if (pullToRefreshEnabled != enabled && turbolinksView != null && turbolinksView.getRefreshLayout() != null) {
+            turbolinksView.getRefreshLayout().setEnabled(enabled);
+            pullToRefreshEnabled = enabled;
+        }
     }
 
     /**
